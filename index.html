@@ -19,8 +19,8 @@
 			map = new OpenLayers.Map ("map", {
 				controls:[
 					new OpenLayers.Control.Navigation(),
-					new OpenLayers.Control.PanZoomBar(),
-					new OpenLayers.Control.LayerSwitcher(),
+					//new OpenLayers.Control.PanZoomBar(),
+					//new OpenLayers.Control.LayerSwitcher(),
 					new OpenLayers.Control.Attribution()],
 				maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
 				maxResolution: 156543.0399,
@@ -61,41 +61,27 @@
 			var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
 			map.setCenter(lonLat, zoom);
 			
-			// Add a Layer with Marker
-			/**/var size = new OpenLayers.Size(21, 25);
-			var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-			var icon = new OpenLayers.Icon('http://www.openstreetmap.org/openlayers/img/marker.png',size,offset);
-			var marker = new OpenLayers.Marker(lonLat, icon);
-			layerMarkers.addMarker(marker);
-			marker.events.register("click", marker, function(e){
-				    popup = new OpenLayers.Popup.FramedCloud("chicken",
-					marker.lonlat,
-					new OpenLayers.Size(200, 200),
-					"Hello",
-					null, false );
-				      map.addPopup(popup);
-				 });
-				 
+			// Add a Layer with Marker			
 				 
 			var things = [
 					  {
-					    Longitude: '22.5144',
-					    Latitude: '88.3470' ,
+					    Latitude: '22.5144',
+					    Longitude: '88.3470' ,
 					    Title: 'Nava Nalanda High School' ,
 					    IconPath:'marker.png'
 					  },
 					  {
-					    Longitude: '22.5302',
-					    Latitude: '88.3626' ,
+					    Latitude: '22.5302',
+					    Longitude: '88.3701' ,
 					    Title: 'Soth Point High School' ,
 					    IconPath:'marker.png'
 					  }
 					];
 					
-			/*for(var i = 0; i < things.length; i++)
+			for(var i = 0; i < things.length; i++)
 			{ 
-			    //(function(i){
-				 //var lonLat = new OpenLayers.LonLat(things[i].Longitude, things[i].Latitude);
+			    (function(i){
+				 var lonLat = new OpenLayers.LonLat(things[i].Longitude, things[i].Latitude);
 				 var lonLat = new OpenLayers.LonLat(things[i].Longitude, things[i].Latitude).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
 
 				 var title = things[i].Title;
@@ -104,20 +90,20 @@
 				 var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 
 				 var icon = new OpenLayers.Icon(iconPath, size, offset);
-				 var marker = new OpenLayers.Marker(lonLat, icon);
+				 var marker = new OpenLayers.Marker(lonLat, icon.clone());
 
 				 layerMarkers.addMarker(marker);
 
 				marker.events.register("click", marker, function(e){
-				    popup = new OpenLayers.Popup.FramedCloud("chicken",
+				    popup = new OpenLayers.Popup.FramedCloud("pop",
 					marker.lonlat,
 					new OpenLayers.Size(200, 200),
 					title,
-					null, false );
+					null, true );
 				      map.addPopup(popup);
 				 });
-			    //})(i);
-			} */
+			    })(i);
+			} 
 			
 		}
 	</script>
