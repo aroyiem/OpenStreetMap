@@ -5,10 +5,10 @@ files:
      destination: /var/www/html
 hooks:
    BeforeInstall:
-    - location: Scripts/installapache.sh
+    - location: installapache.sh
       runas: root
-    - location: Scripts/startapache.sh
+    - location: startapache.sh
       runas: root
    AfterInstall:
-    - location: Scripts/restartapache.sh
+    - location: restartapache.sh
       runas: root
